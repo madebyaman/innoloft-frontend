@@ -16,7 +16,6 @@ const VerticalRule = () => (
     style={{
       width: '1px',
       height: '30px',
-      display: 'inline-block',
       backgroundColor: '#e9ebf0',
       marginLeft: '5px',
       marginRight: '5px',
@@ -89,7 +88,7 @@ const EditorMenu = ({
   }
 
   return (
-    <div className="flex flex-col sm:flex-row py-2 gap-2 items-center">
+    <div className="flex flex-wrap py-2 gap-2 sm:items-center">
       <select
         onChange={changeText}
         placeholder="Change text"

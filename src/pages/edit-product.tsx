@@ -30,6 +30,9 @@ export default function EditProduct() {
     console.log({ data });
   }
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div className="bg-white p-4 shadow border border-slate-200 rounded-sm">
       <h1 className="mb-8">Edit Product</h1>
@@ -88,32 +91,24 @@ export default function EditProduct() {
               </div>
             </div>
             <div>
-              {isLoading ? (
-                <p>Loading</p>
-              ) : error ? (
-                <p>Error fetching TRL</p>
-              ) : (
-                <>
-                  <label htmlFor="trl">TRL</label>
-                  <select
-                    id="trl"
-                    name="trl"
-                    value={product?.trl.id}
-                    onChange={(e) => {
-                      const selectedTrl = data.find(
-                        (item: { id: string }) => item.id === e.target.value
-                      );
-                      dispatch(updateTRL(selectedTrl));
-                    }}
-                  >
-                    {data.map((item: { id: string; name: string }) => (
-                      <option key={item.id} value={item.id}>
-                        {item.name}
-                      </option>
-                    ))}
-                  </select>
-                </>
-              )}
+              <label htmlFor="trl">TRL</label>
+              <select
+                id="trl"
+                name="trl"
+                value={product?.trl.id}
+                onChange={(e) => {
+                  const selectedTrl = data.find(
+                    (item: { id: string }) => item.id === e.target.value
+                  );
+                  dispatch(updateTRL(selectedTrl));
+                }}
+              >
+                {data.map((item: { id: string; name: string }) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <button
