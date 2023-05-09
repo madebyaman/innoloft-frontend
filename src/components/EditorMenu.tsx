@@ -12,6 +12,7 @@ import { FaQuoteLeft, FaRedo, FaUndo } from 'react-icons/fa';
 
 const VerticalRule = () => (
   <hr
+    className="hidden sm:block"
     style={{
       width: '1px',
       height: '30px',
@@ -33,10 +34,10 @@ function IconButton({ isActive, icon, ...props }: IconButtonProps) {
     <button
       type="button"
       className={clsx(
-        'inline-flex items-center p-3 border border-transparent rounded-full shadow-sm',
+        'inline-flex items-center p-2 border border-border-slate-100 rounded-full shadow-sm disabled:opacity-50 disabled:cursor-not-allowed',
         isActive
-          ? 'bg-gray-800 text-white'
-          : 'bg-slate-100 text-gray-800 hover:bg-slate-200'
+          ? 'bg-gray-700 text-white'
+          : 'bg-transparent text-gray-800 hover:bg-slate-100'
       )}
       {...props}
     >
@@ -88,7 +89,7 @@ const EditorMenu = ({
   }
 
   return (
-    <div className="flex py-2 gap-1 items-center">
+    <div className="flex flex-col sm:flex-row py-2 gap-2 items-center">
       <select
         onChange={changeText}
         placeholder="Change text"
@@ -102,68 +103,74 @@ const EditorMenu = ({
         <option value={'normal'}>Normal Text</option>
       </select>
       <VerticalRule />
-      <IconButton
-        disabled={isDisabled}
-        onClick={() => editor.chain().focus().toggleBold().run()}
-        aria-label="Bold"
-        isActive={editor.isActive('bold')}
-        icon={<BsTypeBold style={{ fontSize: '18px' }} />}
-      />
-      <IconButton
-        disabled={isDisabled}
-        onClick={() => editor.chain().focus().toggleItalic().run()}
-        aria-label="Italic"
-        isActive={editor.isActive('italic')}
-        icon={<BsTypeItalic style={{ fontSize: '18px' }} />}
-      />
-      <IconButton
-        disabled={isDisabled}
-        onClick={() => editor.chain().focus().toggleCode().run()}
-        aria-label="Code"
-        isActive={editor.isActive('code')}
-        icon={<BsCode style={{ fontSize: '18px' }} />}
-      />
-      <VerticalRule />
-      <IconButton
-        disabled={isDisabled}
-        onClick={() => editor.chain().focus().toggleBulletList().run()}
-        aria-label="Unordered List"
-        isActive={editor.isActive('bulletList')}
-        icon={<BsListUl style={{ fontSize: '18px' }} />}
-      />
-      <IconButton
-        disabled={isDisabled}
-        onClick={() => editor.chain().focus().toggleOrderedList().run()}
-        aria-label="Ordered List"
-        isActive={editor.isActive('orderedList')}
-        icon={<BsListOl style={{ fontSize: '18px' }} />}
-      />
-      <IconButton
-        disabled={isDisabled}
-        onClick={() => editor.chain().focus().toggleBlockquote().run()}
-        aria-label="Blockquote"
-        isActive={editor.isActive('blockquote')}
-        icon={<FaQuoteLeft style={{ fontSize: '12px' }} />}
-      />
-      <IconButton
-        disabled={isDisabled}
-        onClick={() => editor.chain().focus().setHorizontalRule().run()}
-        aria-label="Horizontal Rule"
-        icon={<BsDash style={{ fontSize: '18px' }} />}
-      />
-      <VerticalRule />
-      <IconButton
-        disabled={isDisabled}
-        onClick={() => editor.chain().focus().undo().run()}
-        aria-label="Undo"
-        icon={<FaUndo style={{ fontSize: '13px' }} />}
-      />
-      <IconButton
-        disabled={isDisabled}
-        onClick={() => editor.chain().focus().redo().run()}
-        aria-label="Redo"
-        icon={<FaRedo style={{ fontSize: '13px' }} />}
-      />
+      <div className="flex items-center gap-2">
+        <IconButton
+          disabled={isDisabled}
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          aria-label="Bold"
+          isActive={editor.isActive('bold')}
+          icon={<BsTypeBold style={{ fontSize: '18px' }} />}
+        />
+        <IconButton
+          disabled={isDisabled}
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          aria-label="Italic"
+          isActive={editor.isActive('italic')}
+          icon={<BsTypeItalic style={{ fontSize: '18px' }} />}
+        />
+        <IconButton
+          disabled={isDisabled}
+          onClick={() => editor.chain().focus().toggleCode().run()}
+          aria-label="Code"
+          isActive={editor.isActive('code')}
+          icon={<BsCode style={{ fontSize: '18px' }} />}
+        />
+        <VerticalRule />
+      </div>
+      <div className="flex items-center gap-2">
+        <IconButton
+          disabled={isDisabled}
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          aria-label="Unordered List"
+          isActive={editor.isActive('bulletList')}
+          icon={<BsListUl style={{ fontSize: '18px' }} />}
+        />
+        <IconButton
+          disabled={isDisabled}
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          aria-label="Ordered List"
+          isActive={editor.isActive('orderedList')}
+          icon={<BsListOl style={{ fontSize: '18px' }} />}
+        />
+        <IconButton
+          disabled={isDisabled}
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          aria-label="Blockquote"
+          isActive={editor.isActive('blockquote')}
+          icon={<FaQuoteLeft style={{ fontSize: '12px' }} />}
+        />
+        <IconButton
+          disabled={isDisabled}
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+          aria-label="Horizontal Rule"
+          icon={<BsDash style={{ fontSize: '18px' }} />}
+        />
+        <VerticalRule />
+      </div>
+      <div className="flex items-center gap-2">
+        <IconButton
+          disabled={isDisabled}
+          onClick={() => editor.chain().focus().undo().run()}
+          aria-label="Undo"
+          icon={<FaUndo style={{ fontSize: '13px' }} />}
+        />
+        <IconButton
+          disabled={isDisabled}
+          onClick={() => editor.chain().focus().redo().run()}
+          aria-label="Redo"
+          icon={<FaRedo style={{ fontSize: '13px' }} />}
+        />
+      </div>
     </div>
   );
 };

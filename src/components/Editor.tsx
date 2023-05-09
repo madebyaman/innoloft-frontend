@@ -5,7 +5,7 @@ import { Editor, EditorContent } from '@tiptap/react';
  */
 const ContentEditor = ({ editor }: { editor: Editor | null }) => {
   return (
-    <div className="prose">
+    <div className="">
       <EditorContent editor={editor} />
     </div>
   );

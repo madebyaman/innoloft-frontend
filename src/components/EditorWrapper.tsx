@@ -31,7 +31,7 @@ export const ContentEditorWrapper = () => {
 
   return (
     <div className="border border-gray-200 p-2 shadow-sm">
-      <div className="px-4 z-10">
+      <div className="z-10">
         {/* Sticky bar for editor menu */}
         <EditorMenu isDisabled={!showMenu} editor={editor} />
       </div>

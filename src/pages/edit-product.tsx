@@ -2,7 +2,6 @@ import React from 'react';
 import { ContentEditorWrapper } from '../components/EditorWrapper';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import {
-  fetchProduct,
   updateBusinessModel,
   updateCategory,
   updateTRL,
@@ -15,14 +14,7 @@ export default function EditProduct() {
   const { configuration } = useConfiguration();
   const { data, isLoading, error } = useTRL();
   const product = useAppSelector((state) => state.product.product);
-  const status = useAppSelector((state) => state.product.status);
   const dispatch = useAppDispatch();
-
-  React.useEffect(() => {
-    if (status === 'idle' && !product) {
-      dispatch(fetchProduct());
-    }
-  }, [dispatch, status, product]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -37,10 +29,6 @@ export default function EditProduct() {
     const data = await req.json();
     console.log({ data });
   }
-
-  if (status === 'loading') return <div>Loading...</div>;
-  if (status === 'failed') return <div>Failed to fetch</div>;
-  if (!product) return <div>No product found</div>;
 
   return (
     <div className="bg-white p-4 shadow border border-slate-200 rounded-sm">
@@ -58,7 +46,7 @@ export default function EditProduct() {
                 name="title"
                 id="title"
                 placeholder="Title"
-                value={product.name}
+                value={product?.name}
                 onChange={(e) => dispatch(updateTitle(e.target.value))}
               ></input>
             </div>
@@ -81,7 +69,7 @@ export default function EditProduct() {
                   name="categories"
                   id="categories"
                   placeholder="Category"
-                  value={product.categories[0].name}
+                  value={product?.categories[0].name}
                   onChange={(e) => dispatch(updateCategory(e.target.value))}
                 ></input>
               </div>
@@ -91,7 +79,7 @@ export default function EditProduct() {
                   type="text"
                   name="business-model"
                   id="business-model"
-                  value={product.businessModels[0].name}
+                  value={product?.businessModels[0].name}
                   onChange={(e) =>
                     dispatch(updateBusinessModel(e.target.value))
                   }
@@ -110,7 +98,7 @@ export default function EditProduct() {
                   <select
                     id="trl"
                     name="trl"
-                    value={product.trl.id}
+                    value={product?.trl.id}
                     onChange={(e) => {
                       const selectedTrl = data.find(
                         (item: { id: string }) => item.id === e.target.value
