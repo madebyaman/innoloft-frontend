@@ -1,3 +1,153 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-3xl text-gray-700;
+  }
+
+ h2 {
+    @apply text-2xl text-gray-700;
+  }
+
+  h3 {
+    @apply text-base text-gray-500;
+  }
+
+  label {
+    @apply block text-sm font-medium leading-6 text-gray-700;
+  }
+
+  input {
+    @apply block flex-1 border-0 rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-inset focus:ring-gray-600 bg-transparent py-2 px-3 text-gray-700 placeholder:text-gray-400 sm:text-sm sm:leading-6;
+  }
+
+  select {
+    @apply block w-full rounded-md border-0 py-2 px-3 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6;
+  }
+}
+
+@layer components {
+  .tag {
+    @apply bg-gray-100 rounded-md p-2 text-sm;
+  }
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror {
+  outline: none;
+  min-height: 20px;
+  cursor: text;
+}
+
+.ProseMirror a {
+  color: #0073e5;
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.ProseMirror a:focus,
+.ProseMirror a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.ProseMirror p {
+  margin: 0 0 28px;
+  padding: 0;
+}
+
+.ProseMirror ol,
+.ProseMirror ul {
+  margin: 30px 40px;
+  padding: 0;
+}
+
+.ProseMirror li p {
+  margin-bottom: 10px;
+}
+
+.ProseMirror hr {
+  border: 0;
+  border-collapse: collapse;
+  border-bottom: 1px solid currentColor;
+  clear: both;
+  color: #eee;
+  margin: 1.65em auto;
+}
+
+.ProseMirror b,
+.ProseMirror strong {
+  font-weight: 700;
+}
+
+.ProseMirror blockquote,
+.ProseMirror cite,
+.ProseMirror em,
+.ProseMirror i {
+  font-style: italic;
+}
+
+.ProseMirror mark {
+  background: #ddd;
+  color: #333;
+}
+
+.ProseMirror blockquote {
+  margin: 10px 5px;
+  padding-left: 10px;
+  border-left: 5px solid #ddd;
+}
+
+.ProseMirror p code {
+  background-color: rgba(135, 131, 120, 0.15);
+  color: #eb5757;
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+}
+
+.ProseMirror pre {
+  padding: 34px 16px 32px 32px;
+  min-height: 1em;
+  color: rgb(55, 53, 47);
+  white-space: pre-wrap;
+  background-color: rgba(135, 131, 120, 0.15);
+}
+
+/* Headings
+--------------------------------------------- */
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+.ProseMirror h1 {
+  font-size: 30px;
+}
+
+.ProseMirror h2 {
+  font-size: 27px;
+}
+
+.ProseMirror h3 {
+  font-size: 24px;
+}
+
+.ProseMirror h4 {
+  font-size: 20px;
+}
